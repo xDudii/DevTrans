@@ -4,23 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admina</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/panel-styles.css">
 </head>
 <body>
+    <header class="header">
+        <img src="zdj/logo.png" alt="Logo" id="logo">
+        <h1>Panel Administracyjny</h1>
+        <button>Wyloguj się</button>
+    </header>
+    
     <div class="container">
-        <aside class="sidebar">
+        <aside class="main-content">
+            <hr>
+            <button class="action-btn" onclick="showForm('addDriverForm')">Dodaj kierowcę</button>
+            <button class="action-btn edit-acion-btn" onclick="showDriverList()">Edytuj kierowcę</button>
+
+            <hr>
+
+            <button class="action-btn" onclick="showForm('addVehicleForm')">Dodaj pojazd</button>
+            <button class="action-btn edit-acion-btn" onclick="showVehicleList()">Edytuj pojazd</button>
+            
+            <hr>
+            <button class="action-btn" onclick="showForm('addRouteForm')">Dodaj trasę</button>
+            <button class="action-btn edit-acion-btn" onclick="showRouteList()">Edytuj trasę</button>
+            
+            <hr>
+            <button class="action-btn" onclick="showForm('assignRouteForm')">Przypisz trasę</button>
+            <button class="action-btn edit-acion-btn" onclick="showAssignedRouteList()">Edytuj przypisane trasy</button>
+            <hr>
+        </aside>
+        
+        <aside class="sidebar" id="formSection">
             <h2>Dodaj dane</h2>
             <form id="addDriverForm" class="form">
                 <h3>Dodaj kierowcę</h3>
+                <input type="text" placeholder="ID" required>
                 <input type="text" placeholder="Imię i nazwisko" required>
                 <input type="text" placeholder="Numer telefonu" required>
+                <input type="text" placeholder="Trzeźwy?" required>
+                <input type="text" placeholder="Zrobione kursy" required>
+                <input type="text" placeholder="Pensja" required>
+                <input type="text" placeholder="Mandaty" required>
                 <button type="submit">Dodaj kierowcę</button>
             </form>
-            
+
+
+
+            <form id="addVehicleForm" class="form">
+                <h3>Dodaj pojazd</h3>
+                <input type="text" placeholder="ID" required>
+                <input type="text" placeholder="Marka" required>
+                <input type="text" placeholder="Model" required>
+                <input type="text" placeholder="Rok produkcji" required>
+                <input type="text" placeholder="Numer rejestracyjny" required>
+                <button type="submit">Dodaj pojazd</button>
+            </form>
+
+
             <form id="addRouteForm" class="form">
                 <h3>Dodaj trasę</h3>
-                <input type="text" placeholder="Nazwa trasy" required>
+                <input type="text" placeholder="ID" required>
+                <input type="text" placeholder="Miejsce początkowe" required>
+                <input type="text" placeholder="Miejsce końcowe" required>
                 <input type="text" placeholder="Długość trasy" required>
+                <input type="text" placeholder="Pzewidywany czas" required>
                 <button type="submit">Dodaj trasę</button>
             </form>
             
@@ -31,20 +78,121 @@
                 <button type="submit">Przypisz trasę</button>
             </form>
         </aside>
+        </aside>
         
-        <main class="main-content">
-            <button class="action-btn" onclick="showForm('addDriverForm')">Dodaj kierowcę</button>
-            <button class="action-btn" onclick="showForm('addRouteForm')">Dodaj trasę</button>
-            <button class="action-btn" onclick="showForm('assignRouteForm')">Przypisz trasę</button>
-        </main>
+
+        <aside class="sidebar" id="driverListSection" style="display: none;">
+            <h2>Dostępni kierowcy</h2>
+            <ul class="driver-list">
+                <li><img src="zdj/kamil-avatar.jpg" alt="Kierowca 1"> Kamil Labudda <button onclick="editDriver('1')">EDYTUJ</button>  <button class="delete-btn">USUŃ</button></li>
+                <li><img src="zdj/sigma-avatar.png" alt="Kierowca 2"> Piotr Kucia <button onclick="editDriver('2')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+                <li><img src="zdj/profilowe.jpg" alt="Kierowca 3"> Donald Tusk <button onclick="editDriver('3')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+            </ul>
+        </aside>
+
+
+
+        <aside class="sidebar" id="editDriverSection" style="display: none;">
+            <h2>Edytuj Kierowce</h2>
+            <form id="editDriverForm" class="edit-form">
+                <input type="text" placeholder="ID" required>
+                <input type="text" placeholder="Imie" required>
+                <input type="text" placeholder="Nazwisko" required>
+                <input type="text" placeholder="Numer Telefonu" required>
+                <input type="text" placeholder="Trzeźwy" required>
+                <input type="text" placeholder="Zrobione kursy" required>
+                <input type="text" placeholder="Pensja" required>
+                <input type="text" placeholder="Mandaty" required>
+                <button type="button" onclick="showDriverList()">Wróć</button>
+                <button type="submit">Zapisz</button>
+            </form>
+        </aside>
+
+
+        <aside class="sidebar" id="routeListSection" style="display: none;">
+            <h2>Dostępne Trasy</h2>
+            <ul class="route-list">
+                <li><img src="zdj/trasa.jpg" alt="Trasa 1">Kraków - Warszawa <button onclick="editRoute('1')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+                <li><img src="zdj/trasa.jpg" alt="Trasa 2">Berlin - Wrocław<button onclick="editRoute('2')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+                <li><img src="zdj/trasa.jpg" alt="Trasa 3">Poznań - Gdańsk<button onclick="editRoute('3')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+            </ul>
+        </aside>
+
+
+
+
+        <aside class="sidebar" id="vehicleListSection" style="display: none;">
+            <h2>Dostępne pojazdy</h2>
+            <ul class="vehicle-list">
+                <li><img src="zdj/daf.jpg" alt="Pojazd 1">DAF <button onclick="editVehicle('1')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+                <li><img src="zdj/iveco.jpg" alt="Pojazd 2">IVECO<button onclick="editVehicle('2')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+                <li><img src="zdj/marcedes.jpg" alt="Pojazd 3">MERCEDES<button onclick="editVehicle('3')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+            </ul>
+        </aside>
+        
+        <aside class="sidebar" id="editVehicleSection" style="display: none;">
+            <h2>Edytuj pojazd</h2>
+            <form id="editVehicleForm" class="edit-form">
+                <input type="text" placeholder="ID" required>
+                <input type="text" placeholder="Marka" required>
+                <input type="text" placeholder="Model" required>
+                <input type="text" placeholder="Rok produkcji" required>
+                <input type="text" placeholder="Numer rejestracyjny" required>
+                <button type="button" onclick="showVehicleList()">Wróć</button>
+                <button type="submit">Zapisz</button>
+            </form>
+        </aside>
+        
+
+
+
+
+        <aside class="sidebar" id="editRouteSection" style="display: none;">
+            <h2>Edytuj Trasę</h2>
+            <form id="editRouteForm" class="edit-form">
+                <input type="text" placeholder="ID" required>
+                <input type="text" placeholder="Miejsce początkowe" required>
+                <input type="text" placeholder="Miejsce końcowe" required>
+                <input type="text" placeholder="Długość trasy" required>
+                <input type="text" placeholder="Przewidywany czas" required>
+                <button type="button" onclick="showRouteList()">Wróć</button>
+                <button type="submit">Zapisz</button>
+            </form>
+        </aside>
+
+
+
+        <aside class="sidebar" id="assignedRouteListSection" style="display: none;">
+            <h2>Aktualnie przypisane trasy</h2>
+            <ul class="assignedRoute-list">
+                <li>ID Kierowcy 1 - ID Trasy 1 <button onclick="editAssignedRoute('1')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+                <li>ID Kierowcy 2 - ID Trasy 2 <button onclick="editAssignedRoute('2')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+                <li>ID Kierowcy 3 - ID Trasy 3 <button onclick="editAssignedRoute('3')">EDYTUJ</button> <button class="delete-btn">USUŃ</button></li>
+            </ul>
+        </aside>
+
+        <aside class="sidebar" id="editAssignedRouteSection" style="display: none;">
+            <h2>Edytuj Przypisanie Trasy</h2>
+            <form id="editAssignedRouteForm" class="edit-form">
+                <input type="text" placeholder="ID Kierowcy" required>
+                <input type="text" placeholder="ID Trasy" required>
+                <button type="button" onclick="showAssignedRouteList()">Wróć</button>
+                <button type="submit">Zapisz</button>
+            </form>
+        </aside>
         
         <aside class="admin-info">
             <h2>Admin</h2>
-            <p>Imię: Jan Kowalski</p>
+            <p>Imię: Leszek Przybylski</p>
             <p>Email: admin@example.com</p>
-            <p>Rola: Super Administrator</p>
+            <p>Rola: Admin</p>
         </aside>
     </div>
+    
+    <footer class="footer">
+        <h5>&COPY 2025 Written by Dev Mind & Dudek</h5>
+        <h6>& Bogaczyk</h6> 
+    </footer>
     
     <script src="script.js"></script>
 </body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admina</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Dodaj dane</h2>
+            <form id="addDriverForm" class="form">
+                <h3>Dodaj kierowcę</h3>
+                <input type="text" placeholder="Imię i nazwisko" required>
+                <input type="text" placeholder="Numer telefonu" required>
+                <button type="submit">Dodaj kierowcę</button>
+            </form>
+            
+            <form id="addRouteForm" class="form">
+                <h3>Dodaj trasę</h3>
+                <input type="text" placeholder="Nazwa trasy" required>
+                <input type="text" placeholder="Długość trasy" required>
+                <button type="submit">Dodaj trasę</button>
+            </form>
+            
+            <form id="assignRouteForm" class="form">
+                <h3>Przypisz trasę</h3>
+                <input type="text" placeholder="ID kierowcy" required>
+                <input type="text" placeholder="ID trasy" required>
+                <button type="submit">Przypisz trasę</button>
+            </form>
+        </aside>
+        
+        <main class="main-content">
+            <button class="action-btn" onclick="showForm('addDriverForm')">Dodaj kierowcę</button>
+            <button class="action-btn" onclick="showForm('addRouteForm')">Dodaj trasę</button>
+            <button class="action-btn" onclick="showForm('assignRouteForm')">Przypisz trasę</button>
+        </main>
+        
+        <aside class="admin-info">
+            <h2>Admin</h2>
+            <p>Imię: Jan Kowalski</p>
+            <p>Email: admin@example.com</p>
+            <p>Rola: Super Administrator</p>
+        </aside>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

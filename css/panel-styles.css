@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background: #eef1f5;
-    overflow: hidden;
+    overflow-x: hidden;
     background-image: url("../zdj/tlo.jpg");
     background-position: center top;
     background-repeat: no-repeat;
@@ -19,9 +19,8 @@ body {
     padding: 20px;
     background: #166a8f;
     color: white;
-    position: fixed;
-    left: 0;
-    right: 0;
+    position: static;
+
 }
 
 .footer{
@@ -47,7 +46,7 @@ h6{
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 100px 20px;
+    padding: 0px 20px;
     gap: 50px;
 }
 
@@ -97,7 +96,7 @@ h6{
 header button{
     position: absolute;
     left: 88%;
-    top: 20%;
+    top: 2.5%;
     padding: 15px 20px;
     margin: 10px;
     width: 7%;
